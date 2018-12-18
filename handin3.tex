@@ -1,0 +1,133 @@
+\documentclass[a4paper,12pt]{article} 
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Permite cambiar la fuente por defecto.
+\usepackage{graphicx}    % Permite implementar imágenes.
+\usepackage{color}       % Permite el uso de colores.
+\usepackage{anysize}     % Permite modificar el tamaño de los márgenes.
+\usepackage{multicol}    % Permite escribir a doble, triple...columna.
+\usepackage{bm}         
+\usepackage{textcomp}    
+\usepackage{eurosym}     
+\usepackage{amsthm} 
+\usepackage{amsmath}     
+\usepackage{amsmath,amsfonts} 
+\usepackage{lineno} 
+\usepackage{float}
+\usepackage{booktabs}     
+\usepackage{fancyhdr}
+\usepackage{longtable}
+\usepackage[makeroom]{cancel}
+\usepackage{listings}
+\usepackage{lineno}
+\usepackage{subfig}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{longtable}
+
+
+\marginsize{2.5cm}{1.5cm}{1.5cm}{1.5cm} % MÁRGENES: Izq, Der, Sup, Inf.
+\parindent=0mm                        % Sangría por defecto. 
+\parskip=3mm                          % Espacio entre párrafos por defecto.
+\renewcommand{\baselinestretch}{1}    % Interlineado.
+\newcommand{\es}{\hspace{0.15cm}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Xabier G. Andrade}
+\rfoot{Statistical Mechanics}
+\lfoot{Homework - 3}
+
+\title{Statistical Mechanics Hand-in 3}
+\author{%
+  Xabier García Andrade \\
+ \includegraphics[width=0.5\textwidth]{logo.png}%
+}
+\date{17th of December, 2018} 
+
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\tableofcontents
+\newpage
+\section{Exercise a)}
+
+The resulting plot is shown in figure $(1)$, the units are not shown in the axis because we are using arbitrary units.. This belongs to an insulator , because it remains constant as the temperature increases. Both of the two last points lie in the same value (20 in arbitrary units). Apart from that, solids usually follow the same function : $C_v = \alpha T^3 + \gamma T$ , but due to lack of experimental points, we can not really distinguish this trend. For low temperatures, a conductor would have a linear behaviour, but not on our case.
+
+
+\begin{figure}[H]
+\centering
+\label{fig:heat}
+\includegraphics[width=0.75 \textwidth, inner]{plot_stats_hw3.pdf}
+\caption{Plot of the experimental data}
+\end{figure}
+
+\section{Exercise b)}
+
+Now we will assume a Debye model. The density of states is given by:
+\begin{equation}
+g ( \epsilon ) = \left\{ \begin{array} { l l } { \frac { 9 \epsilon ^ { 2 } } { \left( \hbar \omega _ { D } \right) ^ { 3 } } } & { , \quad \epsilon \leq \hbar \omega _ { D } } \\ { 0 } & { , \quad \epsilon > \hbar \omega _ { D } } \end{array} \right.
+\end{equation}
+
+Considering that the occupation factor for boson obeys the following formula: 
+
+\begin{equation}
+n ( \epsilon ) = \frac { 1 } { e ^ { \beta \epsilon } - 1 }
+\label{eq:occ}
+\end{equation}
+
+We can calculate the high and low temperature behaviour of the average displacement $\left\langle ( \Delta r ) ^ { 2 } \right\rangle$, by evaluating the following integral:
+\begin{equation}
+\left\langle ( \Delta r ) ^ { 2 } \right\rangle \equiv \frac { \hbar ^ { 2 } } { 2 M } \int _ { 0 } ^ { + \infty } d \epsilon \frac { g ( \epsilon ) } { \epsilon } ( 1 + 2 n ( \epsilon ) )
+\label{eq:displa}
+\end{equation}
+
+\subsection{Low Temperature Limit.}
+
+When $T \to 0$, the occupation $n(\epsilon) \to 0$. Then, the only remaining term in the integral will be the first one.
+
+\begin{equation}
+\left\langle ( \Delta r ) ^ { 2 } \right\rangle \equiv \frac { \hbar ^ { 2 } } { 2 M } \int _ { 0 } ^ { + \infty } d \epsilon \frac { g ( \epsilon ) } { \epsilon } = \frac { \hbar ^ { 2 } } { 2 M } \int _ { 0 } ^ {  \hbar \omega_{D} } d \epsilon  \frac{9 \epsilon}{(\hbar \omega_{D})^3} 
+\label{eq:displa}
+\end{equation}
+
+We may rewrite the integral as: 
+
+$$\frac {9 \hbar ^ { 2 } } { 2 M ( \hbar \omega_{D})^3 } = \int _ { 0 } ^ {  \hbar \omega_{D} } \epsilon d \epsilon$$
+
+This trivial integral would yield the following result: 
+
+\begin{equation}
+\left\langle ( \Delta r ) ^ { 2 } \right\rangle = \frac{9 \hbar}{4 M  \omega_{D}}
+\label{eq:resultlow}
+\end{equation}
+
+\subsection{High Temperature Limit.}
+
+When considering high temperatures, the leading term in $(1 + 2n(\epsilon))$ would become the second one, becoming much larger than 1, so we consider only this term. 
+
+\begin{equation}
+\left\langle ( \Delta r ) ^ { 2 } \right\rangle \equiv \frac { \hbar ^ { 2 } } { 2 M } \int _ { 0 } ^ { + \infty } d \epsilon \frac { g ( \epsilon ) } { \epsilon } 2 n (\epsilon) = \frac { \hbar ^ { 2 } } {  M } \int _ { 0 } ^ { \hbar \omega_{D}} d \epsilon \frac { 1 } { \epsilon } \frac{9 \epsilon^2}{(\hbar \omega_{D})^3}  \frac{1}{e^{\beta \epsilon} -1}
+\label{eq:resulthigh}
+\end{equation}
+
+We can approximate the last term in the integrand as: 
+
+$$\frac{1}{e^{\beta \epsilon} -1} = \frac{1}{1 + \epsilon \beta -1 } = \frac{1}{\epsilon \beta}$$
+
+Then substituting in (\ref{eq:resulthigh}): 
+
+\begin{equation} 
+\left\langle ( \Delta r ) ^ { 2 } \right\rangle = \frac { \hbar ^ { 2 } } {  M } \int _ { 0 } ^ { \hbar \omega_{D}} d \epsilon  \frac{9}{(\hbar \omega_{D})^3 \beta} = \frac{9}{M \beta \omega_{D}^2}
+\end{equation}
+
+\section{Conclusions.}
+
+When approaching the zero temperature, we get a term which does not depend on the temperature and which is impossible to avoid. This is a pure quantum effect that we could still include in the high temperature limit, but we decided to neglect it. 
+
+It is also interesting to note that the displacement would diverge as $T \to \infty$, which is something we would expect, since the mean free path should increase as the temperature increases.
+
+\end{document}
